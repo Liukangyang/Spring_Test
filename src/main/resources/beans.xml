@@ -39,4 +39,15 @@
 
     <bean id="userDao" class="org.example.UserDaoImpl"></bean>
 
+
+<!--    切换环境-->
+    <beans profile="dev">
+        <bean id="userService_dev" class="org.example.UserServiceImpl" autowire="byName"></bean>
+<!--        <bean id="userDao" class="org.example.UserDaoImpl"></bean>-->
+    </beans>
+
+    <beans profile="test">
+        <bean id="userDao_test" class="org.example.UserDaoImpl"></bean>
+    </beans>
+
 </beans>

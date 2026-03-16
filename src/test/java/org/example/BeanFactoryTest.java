@@ -75,4 +75,14 @@ public class BeanFactoryTest extends TestCase {
         System.out.println(userService.getUserDao());
     }
 
+    public void testChangeEn(){
+        System.setProperty("spring.profiles.active","test");
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("beans.xml");
+//        UserServiceImpl userService = (UserServiceImpl)applicationContext.getBean("userService_dev");
+//        System.out.println(userService.getUserDao());
+
+        UserDao userDao = (UserDao) applicationContext.getBean("userDao_test");
+        System.out.println(userDao);
+    }
+
 }
