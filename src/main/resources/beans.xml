@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="userService" name="aaa,bbb" class="org.example.UserServiceImpl" scope="singleton" lazy-init="true"
+          init-method="init" destroy-method="destroy">
+        <property name="userDao" ref="userDao"></property>  <!--        对应setXxx方法-->
+    </bean>
+
+
+
+<!--    静态工厂-->
+    <bean id="userService1" class="org.example.factory.MyBeanFactory1" factory-method="getUserService">
+    </bean>
+
+<!--    实例工厂-->
+   <bean id = "myBeanFactory2" class=" org.example.factory.MyBeanFactory2"></bean>
+    <bean id="userService2" factory-bean="myBeanFactory2" factory-method="getUserService"></bean>
+
+<!--    factorybean延迟加载-->
+    <bean id="userService3" class="org.example.factory.MyBeanFactory3"></bean>
+
+
+<!--    list初始化-->
+    <bean id="userService4" class="org.example.UserServiceImpl">
+        <property name="stringList">
+            <list>
+                <value>hello</value>
+                <value>world</value>
+            </list>
+        </property>
+    </bean>
+
+
+<!--    autowire-->
+    <bean id="userService5" class="org.example.UserServiceImpl" autowire="byName"></bean>
+
+    <bean id="userDao" class="org.example.UserDaoImpl"></bean>
+
+</beans>
