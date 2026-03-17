@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService, InitializingBean {
 
     //初始化方法
     public void init(){
-        System.out.println("userService init");
+        System.out.println("userService init_method");
     }
 
     //销毁方法
@@ -55,5 +55,6 @@ public class UserServiceImpl implements UserService, InitializingBean {
     public void afterPropertiesSet() throws Exception {
         System.out.println("initialize Bean!");
     }
+
 
 }

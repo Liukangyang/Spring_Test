@@ -8,7 +8,10 @@ import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.sql.Connection;
+
 public class BeanFactoryTest extends TestCase {
+
     public void testBeanFactory(){
 //        System.out.println("hello");
         //1.创建beanfactory
@@ -27,7 +30,7 @@ public class BeanFactoryTest extends TestCase {
 
         System.out.println(userService);
 
-        //DI注入
+        //5.DI注入
         UserDao userDao = (UserDao) beanfactory.getBean("userDao");
         System.out.println(userDao);
 
@@ -83,6 +86,28 @@ public class BeanFactoryTest extends TestCase {
 
         UserDao userDao = (UserDao) applicationContext.getBean("userDao_test");
         System.out.println(userDao);
+    }
+
+    public void testGetJar(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        Connection connection = applicationContext.getBean("connection", Connection.class);
+        System.out.println(connection);
+    }
+
+    public void testBeanDefinition(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        UserDao userDao = applicationContext.getBean("userDao",UserDao.class);
+        System.out.println(userDao);
+        MyBean myBean= applicationContext.getBean("mycomponent",MyBean.class);
+        System.out.println(myBean);
+
+    }
+
+    public void testBeanPostProcessor(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        UserServiceImpl userService = applicationContext.getBean("userService",UserServiceImpl.class);
+        System.out.println(userService);
+
     }
 
 }

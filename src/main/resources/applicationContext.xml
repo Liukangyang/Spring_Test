@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    <bean id="connection" class="java.sql.DriverManager" factory-method="getConnection">-->
+<!--        <constructor-arg name="url" value="jdbc:mysql://localhost:3306/mybatis"/>-->
+<!--        <constructor-arg name="user" value="root"/>-->
+<!--        <constructor-arg name="password" value="123456"/>-->
+<!--    </bean>-->
+
+<!--    <bean class="org.example.factory.MyBeanDefinitionRegistryPostProcessor"></bean>-->
+
+<!--    <bean class="org.example.factory.MyComponentBeanDefinition"></bean>-->
+
+    <bean class="org.example.factory.MyBeanPostProcessor"></bean>
+    <bean id="userService" class="org.example.UserServiceImpl" init-method="init"></bean>
+
+</beans>
