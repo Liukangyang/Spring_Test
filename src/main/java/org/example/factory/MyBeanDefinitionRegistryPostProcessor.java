@@ -14,7 +14,6 @@ public class MyBeanDefinitionRegistryPostProcessor implements BeanDefinitionRegi
         BeanDefinition beanDefinition = new RootBeanDefinition();
         beanDefinition.setBeanClassName("org.example.UserDaoImpl");
         beanDefinitionRegistry.registerBeanDefinition("userDao",beanDefinition); //(id,BeanDefinition)
-
     }
 
     @Override

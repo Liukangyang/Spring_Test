@@ -106,8 +106,14 @@ public class BeanFactoryTest extends TestCase {
     public void testBeanPostProcessor(){
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         UserServiceImpl userService = applicationContext.getBean("userService",UserServiceImpl.class);
-        System.out.println(userService);
+//        System.out.println(userService);
 
+    }
+
+    public void testMybatis(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        org.example.UserServiceImpl userService = applicationContext.getBean("userService",UserServiceImpl.class);
+        userService.show();
     }
 
 }

@@ -14,7 +14,37 @@
 
 <!--    <bean class="org.example.factory.MyComponentBeanDefinition"></bean>-->
 
-    <bean class="org.example.factory.MyBeanPostProcessor"></bean>
-    <bean id="userService" class="org.example.UserServiceImpl" init-method="init"></bean>
+<!--    <bean class="org.example.factory.MyBeanPostProcessor"></bean>-->
+<!--    <bean id="userService" class="org.example.UserServiceImpl" init-method="init">-->
+<!--        <property name="name" value="HELLO"></property>-->
+<!--    </bean>-->
+
+
+<!--与Mybatis框架的整合-->
+<!--    1.sqlsessionfactory  用于替代mybatis-config.xml-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="url" value="jdbc:mysql://localhost:3306/mybatis"/>
+        <property name="username" value="root"/>
+        <property name="password" value="123456"/>
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+    </bean>
+
+    <!-- 配置SqlSessionFactoryBean,作用将SqlSessionFactory存储到spring容器 -->
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+<!--    2.MapperScannerConfigurer-->
+    <!-- MapperScannerConfigurer,作用扫描指定的包，产生Mapper.对象存储到Spring容器 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="org.example.mapper"/>
+    </bean>
+    <!--  userMapper的bean由MapperScannerConfigurer生成   -->
+    <bean id="userService" class="org.example.UserServiceImpl">
+        <property name="userMapper" ref="userMapper"/>
+    </bean>
+
+
+
 
 </beans>
