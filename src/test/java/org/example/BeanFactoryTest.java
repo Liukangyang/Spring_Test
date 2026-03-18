@@ -116,4 +116,20 @@ public class BeanFactoryTest extends TestCase {
         userService.show();
     }
 
+
+    //注解测试
+    public void testZhujie(){
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+//         ComponentTest componentTest = (ComponentTest) applicationContext.getBean("componentTest");
+//        System.out.println(componentTest);
+
+
+         UserDaoImpl userDao = applicationContext.getBean("userDao", UserDaoImpl.class);
+        System.out.println(userDao);
+        applicationContext.close();
+
+    }
+
+
+
 }
