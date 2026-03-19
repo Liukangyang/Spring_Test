@@ -6,8 +6,10 @@ import org.example.service.UserService;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 
 public class BeanFactoryTest extends TestCase {
@@ -122,12 +124,28 @@ public class BeanFactoryTest extends TestCase {
         ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
 //         ComponentTest componentTest = (ComponentTest) applicationContext.getBean("componentTest");
 //        System.out.println(componentTest);
-
-
          UserDaoImpl userDao = applicationContext.getBean("userDao", UserDaoImpl.class);
         System.out.println(userDao);
         applicationContext.close();
 
+    }
+
+//属性注解
+    public void testFiledZhujie(){
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        ComponentTest componentTest = applicationContext.getBean("componentTest",ComponentTest.class);
+        System.out.println(componentTest);
+        componentTest.show();
+    }
+
+
+    //@Bean
+    public void testBean(){
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        DataSource dataSource =  (DataSource)applicationContext.getBean("dataSource");
+        System.out.println(dataSource);
+         BeanTest beanTest =(BeanTest)applicationContext.getBean("beanTest");
+         beanTest.show();
     }
 
 
